@@ -5,693 +5,298 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONU ADD SCRIPT</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@700&display=swap');
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: 
-                linear-gradient(135deg, 
-                    rgba(210, 106, 241, 0.95) 0%, 
-                    rgba(186, 104, 200, 0.9) 25%, 
-                    rgba(156, 39, 176, 0.85) 50%, 
-                    rgba(142, 36, 170, 0.9) 75%, 
-                    rgba(123, 31, 162, 0.95) 100%),
-                radial-gradient(circle at 20% 80%, 
-                    rgba(186, 104, 200, 0.4) 0%, 
-                    transparent 60%),
-                radial-gradient(circle at 80% 20%, 
-                    rgba(156, 39, 176, 0.4) 0%, 
-                    transparent 60%);
-            background-color: #40B5AD;
-            background-blend-mode: overlay, normal, normal;
-            color: #40E0D0;
+            font-family: "Trebuchet MS", Trebuchet MS;
+            background: #00a3cc; /* Light greenish background #40B5AD */
+            color: #333;
             margin: 0;
-            padding: 8px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            transition: background 0.5s ease, color 0.3s;
+            transition: background 0.3s, color 0.3s;
         }
-        
         body.dark-mode {
-            background: 
-                linear-gradient(135deg, 
-                    rgba(74, 20, 140, 0.95) 0%, 
-                    rgba(81, 45, 168, 0.9) 25%, 
-                    rgba(94, 53, 177, 0.85) 50%, 
-                    rgba(103, 58, 183, 0.9) 75%, 
-                    rgba(123, 31, 162, 0.95) 100%),
-                radial-gradient(circle at 20% 80%, 
-                    rgba(142, 36, 170, 0.4) 0%, 
-                    transparent 60%),
-                radial-gradient(circle at 80% 20%, 
-                    rgba(156, 39, 176, 0.4) 0%, 
-                    transparent 60%);
-            background-color: #7B1FA2;
-            background-blend-mode: overlay, normal, normal;
-            color: #f3e5f5;
+            background: linear-gradient(135deg, #333, #555);
+            color: #eee;
+        }
+        body.dark-mode h1 {
+            color: #a7d129;
+        }
+        body.dark-mode .panel-header {
+            color: #a7d129;
+            border-bottom: 1px solid #666;
+        }
+        body.dark-mode .panel,
+        body.dark-mode .input-group input,
+        body.dark-mode .input-group select,
+        body.dark-mode #output-script {
+            background-color: #444;
+            color: #eee;
+            border-color: #666;
+        }
+        body.dark-mode .input-group label {
+            color: #ccc;
+        }
+        body.dark-mode #copy-btn,
+        body.dark-mode #generate-btn,
+        body.dark-mode #clear-btn {
+            color: #eee;
+            box-shadow: 0 2px 4px rgba(255,255,255,0.2);
+        }
+        body.dark-mode #generate-btn {
+            background: linear-gradient(135deg, #689f38, #8bc34a);
+        }
+        body.dark-mode #generate-btn:hover {
+            background: linear-gradient(135deg, #558b2f, #7cb342);
+            transform: translateY(-2px) scale(1.02);
+        }
+        body.dark-mode #clear-btn {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+        }
+        body.dark-mode #clear-btn:hover {
+            background: linear-gradient(135deg, #c62828, #e53935);
+            transform: translateY(-2px) scale(1.02);
+        }
+        body.dark-mode #copy-btn {
+            background: linear-gradient(135deg, #1e88e5, #42a5f5);
+        }
+        body.dark-mode #copy-btn:hover {
+            background: linear-gradient(135deg, #1565c0, #2196f3);
+            transform: translateY(-2px) scale(1.02);
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            font-weight: 900;
+            font-size: 2.0em;
+            font-weight: bold;
             text-align: center;
-            margin: 12px 0 4px 0;
-            background: #6026AB;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 5px; /* Reduced margin */
         }
         
-        body.dark-mode h1 {
-            background: linear-gradient(90deg, #f3e5f5, #ce93d8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
+        /* New style for the prepared by text */
         .prepared-by {
             text-align: center;
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: #470047;
-            margin-bottom: 15px;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            font-size: 15px;
+            color: #6D1909; /* Deep Purple for emphasis */
+            margin-bottom: 15px; /* Reduced from 25px */
+            font-family: 'Trebuchet MS', Trebuchet MS;
         }
-        
+
         body.dark-mode .prepared-by {
-            color: #fff59d;
+            color: #ccc;
         }
 
         .theme-toggle {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 10;
+            top: 20px;
+            right: 20px;
         }
-        
         .theme-toggle button {
-            background: rgba(255, 255, 255, 0.9);
-            color: #9c27b0;
-            border: 1px solid rgba(156, 39, 176, 0.3);
+            background-color: transparent;
+            color: #555;
+            border: none;
             cursor: pointer;
-            padding: 8px 10px;
-            border-radius: 50%;
-            font-size: 0.9rem;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 1em;
             outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: color 0.3s;
         }
-        
         .theme-toggle button:hover {
-            background: #9c27b0;
-            color: white;
-            transform: rotate(15deg);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            color: #006400;
         }
-        
         body.dark-mode .theme-toggle button {
-            background: rgba(156, 39, 176, 0.9);
-            color: #f3e5f5;
-            border: 1px solid rgba(186, 104, 200, 0.3);
+            color: #eee;
         }
-        
         body.dark-mode .theme-toggle button:hover {
-            background: #ba68c8;
-            color: #4a148c;
+            color: #a7d129;
         }
 
         .main-container {
             display: flex;
-            flex-direction: row;
-            gap: 20px;
+            flex-direction: row; /* Changed to row for side-by-side layout */
+            gap: 20px; /* Added gap between panels */
             width: 100%;
-            max-width: 1000px;
+            max-width: 1000px; /* Increased max-width to accommodate two panels */
             justify-content: center;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 12px;
-            box-shadow: 
-                0 10px 30px rgba(156, 39, 176, 0.3),
-                0 4px 12px rgba(142, 36, 170, 0.25);
-            transition: all 0.3s ease;
+            background-color: #e3f2fd;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: background 0.3s, box-shadow 0.3s;
             position: relative;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(186, 104, 200, 0.3);
         }
-        
-        body.dark-mode .main-container {
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.5),
-                0 4px 12px rgba(142, 36, 170, 0.4);
-            border: 1px solid rgba(186, 104, 200, 0.2);
-        }
-
         .panel {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.95);
+            flex: 1; /* Makes panels take up equal space */
+            background-color: #e6e6fa; /* Light purple for Input & Output boxes */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 
-                0 6px 20px rgba(156, 39, 176, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(186, 104, 200, 0.2);
+            transition: background 0.3s, box-shadow 0.3s, color 0.3s;
         }
-        
-        body.dark-mode .panel {
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 
-                0 6px 20px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(186, 104, 200, 0.1);
-        }
-
         .panel-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 18px;
-            color: #9c27b0;
-            font-size: 1.0rem;
-            font-weight: 700;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ba68c8;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: #006400;
+            font-size: 1.3em;
+            font-weight: bold;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #90caf9;
             transition: color 0.3s, border-bottom 0.3s;
-            font-family: 'Montserrat', sans-serif;
         }
-        
-        body.dark-mode .panel-header {
-            color: #ce93d8;
-            border-bottom: 2px solid #ba68c8;
-        }
-
         .input-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 8px;
         }
-        
         .input-grid.two-col {
             grid-template-columns: repeat(2, 1fr);
         }
-        
         .input-grid.vlan-grid {
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 5px;
         }
-
         .input-group {
             display: flex;
             flex-direction: column;
         }
-        
         .input-group.full-width {
             grid-column: 1 / -1;
         }
-
         .input-group label {
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            color: #7b1fa2;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 2px;
+            color: #555;
             transition: color 0.3s;
-            font-family: 'Montserrat', sans-serif;
         }
-        
-        body.dark-mode .input-group label {
-            color: #ce93d8;
-        }
-
         .input-group input, .input-group select {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #e1bee7;
+            padding: 8px;
+            border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.85em;
             box-sizing: border-box;
-            background: rgba(243, 229, 245, 0.9);
-            font-family: 'Roboto', sans-serif;
-            transition: all 0.3s ease;
-            color: #4a148c;
-            box-shadow: 
-                inset 0 1px 2px rgba(0, 0, 0, 0.05);
+            background-color: #e6f7ff; /* Light blue for input fields */
+            font-family: "Trebuchet MS", Trebuchet MS;
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
         }
-        
-        .input-group input::placeholder {
-            color: rgba(123, 31, 162, 0.6);
-        }
-        
         .input-group input:focus, .input-group select:focus {
             outline: none;
-            border-color: #9c27b0;
-            box-shadow: 
-                0 0 0 3px rgba(156, 39, 176, 0.3),
-                inset 0 1px 2px rgba(0, 0, 0, 0.05);
-            background: white;
+            border-color: #2196f3;
+            box-shadow: 0 0 4px rgba(33, 150, 243, 0.3);
         }
-        
-        body.dark-mode .input-group input,
-        body.dark-mode .input-group select {
-            background: rgba(243, 229, 245, 0.15);
-            border: 1px solid rgba(206, 147, 216, 0.3);
-            color: #f3e5f5;
-        }
-        
-        body.dark-mode .input-group input::placeholder {
-            color: rgba(206, 147, 216, 0.6);
-        }
-        
-        body.dark-mode .input-group input:focus,
-        body.dark-mode .input-group select:focus {
-            border-color: #ba68c8;
-            box-shadow: 
-                0 0 0 3px rgba(186, 104, 200, 0.4),
-                inset 0 1px 2px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         .button-group {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
-        
         .button-group button {
-            padding: 12px 20px;
+            padding: 10px 20px;
             border: none;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.9em;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            min-width: 120px;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 40px;
         }
-        
-        .button-group button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            transition: left 0.6s;
-        }
-        
-        .button-group button:hover::before {
-            left: 100%;
-        }
-        
         #generate-btn {
-            background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
             color: white;
         }
-        
         #generate-btn:hover {
-            background: linear-gradient(135deg, #ba68c8 0%, #9c27b0 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(156, 39, 176, 0.4);
+            background: linear-gradient(135deg, #45a049, #5cb860);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
         }
-        
         #clear-btn {
-            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            background: linear-gradient(135deg, #f44336, #ef5350);
             color: white;
         }
-        
         #clear-btn:hover {
-            background: linear-gradient(135deg, #ef5350 0%, #f44336 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(244, 67, 54, 0.4);
+            background: linear-gradient(135deg, #d32f2f, #e53935);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
         }
-        
-        body.dark-mode #generate-btn {
-            background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
-        }
-        
-        body.dark-mode #generate-btn:hover {
-            background: linear-gradient(135deg, #9c27b0 0%, #8e24aa 100%);
-        }
-        
-        body.dark-mode #clear-btn {
-            background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
-        }
-        
-        body.dark-mode #clear-btn:hover {
-            background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
-        }
-
         .output-panel {
+            background-color: #e6e6fa; /* Light purple for Output box */
             position: relative;
-            margin-top: 0;
+            margin-top: 0; /* Adjusted for side-by-side layout */
+            transition: background 0.3s, box-shadow 0.3s, color 0.3s;
         }
-
         #output-script {
-            background: rgba(243, 229, 245, 0.9);
-            color: #4a148c;
-            padding: 18px;
+            background-color: #e6f7ff; /* Light blue for output script text area */
+            color: #333;
+            padding: 15px;
             border-radius: 6px;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
-            min-height: 220px;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            border: 1px solid #e1bee7;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            max-height: 350px;
-            overflow-y: auto;
-            box-shadow: 
-                inset 0 1px 2px rgba(0, 0, 0, 0.05);
+            min-height: 150px;
+            font-size: 0.8em;
+            line-height: 1.3;
+            border: 1px solid #bbdefb;
+            font-family: "Trebuchet MS", Trebuchet MS;
+            font-weight: bold;
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
         }
-        
-        body.dark-mode #output-script {
-            background: rgba(243, 229, 245, 0.15);
-            color: #f3e5f5;
-            border: 1px solid rgba(206, 147, 216, 0.3);
-        }
-
         .output-buttons {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 12px;
         }
-        
         #copy-btn {
-            background: linear-gradient(135deg, #673ab7 0%, #5e35b1 100%);
+            background: linear-gradient(135deg, #2196f3, #42a5f5);
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85em;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            min-width: 100px;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 36px;
         }
-        
-        #copy-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            transition: left 0.6s;
-        }
-        
-        #copy-btn:hover::before {
-            left: 100%;
-        }
-        
         #copy-btn:hover {
-            background: linear-gradient(135deg, #7e57c2 0%, #673ab7 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(103, 58, 183, 0.4);
+            background: linear-gradient(135deg, #1e88e5, #2196f3);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
         }
         
-        body.dark-mode #copy-btn {
-            background: linear-gradient(135deg, #5e35b1 0%, #512da8 100%);
-        }
-        
-        body.dark-mode #copy-btn:hover {
-            background: linear-gradient(135deg, #7e57c2 0%, #673ab7 100%);
-        }
-
-        /* Responsive Design - UPDATED FOR MOBILE VIEW */
-        @media (max-width: 992px) {
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
                 max-width: 95%;
-                padding: 18px;
             }
-            
-            .panel {
-                padding: 18px;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .prepared-by {
-                font-size: 1.0rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            /* OLT Type এবং ONU Ports পাশাপাশি */
-            .input-grid.two-col {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            
-            /* Slot, PON, ONU ID পাশাপাশি */
-            .input-grid:not(.two-col):not(.vlan-grid) {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-                margin-top: 12px !important;
-            }
-            
-            /* VLAN inputs */
-            .input-grid.vlan-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 6px;
-            }
-            
-            /* Line Profile এবং GEM ID পাশাপাশি */
-            .input-grid.two-col + .input-grid.two-col {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                margin-top: 12px !important;
-            }
-            
-            /* MAC Address এবং Bandwidth Rate পাশাপাশি */
-            .input-grid.two-col + .input-grid.two-col + .input-grid.two-col {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                margin-top: 12px !important;
-            }
-            
-            .button-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .button-group button {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-                margin-top: 40px;
-            }
-            
-            .theme-toggle {
-                top: 12px;
-                right: 12px;
-            }
-            
-            .main-container {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            /* সব single column */
-            .input-grid.two-col {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .input-grid:not(.two-col):not(.vlan-grid) {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                margin-top: 12px !important;
-            }
-            
-            .input-grid.vlan-grid {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .prepared-by {
-                font-size: 0.95rem;
-            }
-            
-            .panel-header {
-                font-size: 1.1rem;
-            }
-            
-            .button-group button {
-                padding: 10px 18px;
-            }
-            
-            /* ছোট স্ক্রিনে spacing কমিয়ে */
-            .panel {
-                padding: 15px;
-            }
-            
-            .main-container {
-                padding: 12px;
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .input-grid.two-col,
-            .input-grid:not(.two-col):not(.vlan-grid),
-            .input-grid.vlan-grid {
-                gap: 8px;
-            }
-            
-            h1 {
-                font-size: 1.4rem;
-            }
-            
-            .prepared-by {
-                font-size: 0.85rem;
-            }
-            
-            .panel-header {
-                font-size: 1rem;
-            }
-            
-            .input-group label {
-                font-size: 0.8rem;
-            }
-            
-            .input-group input,
-            .input-group select {
-                padding: 8px 10px;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Scrollbar styling */
-        #output-script::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        #output-script::-webkit-scrollbar-track {
-            background: rgba(225, 190, 231, 0.3);
-            border-radius: 4px;
-        }
-        
-        #output-script::-webkit-scrollbar-thumb {
-            background: #ba68c8;
-            border-radius: 4px;
-        }
-        
-        #output-script::-webkit-scrollbar-thumb:hover {
-            background: #9c27b0;
-        }
-        
-        body.dark-mode #output-script::-webkit-scrollbar-track {
-            background: rgba(206, 147, 216, 0.2);
-        }
-        
-        body.dark-mode #output-script::-webkit-scrollbar-thumb {
-            background: #ba68c8;
-        }
-        
-        body.dark-mode #output-script::-webkit-scrollbar-thumb:hover {
-            background: #ce93d8;
-        }
-
-        /* Animation for panel entrance */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .panel {
-            animation: fadeInUp 0.5s ease-out;
-        }
-        
-        .output-panel {
-            animation: fadeInUp 0.5s ease-out 0.2s both;
-        }
-        
-        /* Smaller icon sizes */
-        .material-icons {
-            font-size: 1.1rem;
-        }
-        
-        /* Number input spinner styling */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            opacity: 0.6;
-            background: rgba(156, 39, 176, 0.3);
-            border-radius: 2px;
-        }
-        
-        /* Selection color */
-        ::selection {
-            background-color: rgba(156, 39, 176, 0.4);
-            color: white;
-        }
-        
-        ::-moz-selection {
-            background-color: rgba(156, 39, 176, 0.4);
-            color: white;
-        }
-        
-        body.dark-mode ::selection {
-            background-color: rgba(186, 104, 200, 0.4);
-            color: white;
-        }
-        
-        body.dark-mode ::-moz-selection {
-            background-color: rgba(186, 104, 200, 0.4);
-            color: white;
         }
     </style>
 </head>
@@ -712,7 +317,7 @@
 
     <div class="panel">
         <div class="panel-header">
-            <span class="material-icons">settings_input_component</span> Configuration Inputs
+            <span class="material-icons">settings_input_component</span> Inputs
         </div>
 
         <div class="input-grid two-col">
@@ -720,8 +325,8 @@
                 <label for="olt-type">OLT Type</label>
                 <select id="olt-type">
                     <option value="vsol-gpon">VSOL GPON</option>
-                    <option value="cdata-gpon-16" selected>C-Data GPON 16-PON</option>
-                    <option value="cdata-gpon-8">C-Data GPON 8-PON</option>
+                    <option value="cdata-gpon-16">CData GPON 16-PON</option>
+                    <option value="cdata-gpon-8">CData GPON 8-PON</option>
                     <option value="utstarcom">UTStarcom</option>
                     <option value="fh-net">FH-NET</option>
                     <option value="phyhome">Phyhome</option>
@@ -730,55 +335,55 @@
             <div class="input-group">
                 <label for="onu-ports">ONU Ports</label>
                 <select id="onu-ports">
-                    <option value="1" selected>1-Port</option>
+                    <option value="1">1-Port</option>
                     <option value="4">4-Ports</option>
                 </select>
             </div>
         </div>
 
-        <div class="input-grid" style="margin-top: 12px;">
+        <div class="input-grid" style="margin-top: 8px;">
             <div class="input-group">
                 <label for="slot">Slot</label>
-                <input type="number" id="slot" value="0" min="0" max="16">
+                <input type="number" id="slot" value="0">
             </div>
             <div class="input-group">
-                <label for="pon">PON Port</label>
-                <input type="number" id="pon" placeholder="PON PORT" min="1" max="16">
+                <label for="pon">PON</label>
+                <input type="number" id="pon" placeholder="PON PORT">
             </div>
             <div class="input-group">
                 <label for="onu-id">ONU ID</label>
-                <input type="number" id="onu-id" placeholder="ONU ID" min="1" max="128">
+                <input type="number" id="onu-id" placeholder="ONU ID">
             </div>
         </div>
 
-        <div class="input-grid two-col" style="margin-top: 12px;">
+        <div class="input-grid two-col" style="margin-top: 8px;">
             <div class="input-group">
                 <label for="onu-mac">ONU MAC Address</label>
-                <input type="text" id="onu-mac" placeholder="ONU MAC (e.g., AABBCCDDEEFF)">
+                <input type="text" id="onu-mac" placeholder="ONU MAC">
             </div>
             <div class="input-group">
                 <label for="line-profile">Line Profile ID</label>
-                <input type="number" id="line-profile" placeholder="LP-ID" value="5" min="1" max="64">
+                <input type="number" id="line-profile" placeholder="LP-ID">
             </div>
         </div>
 
-        <div class="input-grid two-col" style="margin-top: 12px;">
+        <div class="input-grid two-col" style="margin-top: 8px;">
             <div class="input-group">
                 <label for="gem-id">GEM ID (C-Data)</label>
-                <input type="number" id="gem-id" value="1" min="1" max="4096">
+                <input type="number" id="gem-id" value="1">
             </div>
             <div class="input-group">
                 <label for="bandwidth">Bandwidth Rate</label>
                 <select id="bandwidth">
                     <option value="60">60/60</option>
-                    <option value="100" selected>100/100</option>
+                    <option value="100">100/100</option>
                     <option value="160">160/160</option>
                     <option value="210">210/210</option>
                 </select>
             </div>
         </div>
 
-        <div class="input-group full-width" style="margin-top: 12px;">
+        <div class="input-group full-width" style="margin-top: 8px;">
             <label>VLAN IDs</label>
             <div class="input-grid vlan-grid">
                 <input type="text" id="vlan1" placeholder="VLAN 1" value="12">
@@ -790,12 +395,10 @@
 
         <div class="button-group">
             <button id="generate-btn" onclick="generateScript()">
-                <span class="material-icons" style="vertical-align: middle; margin-right: 5px;">play_arrow</span>
-                GENERATE
+                <span class="material-icons">play_arrow</span> GENERATE
             </button>
             <button id="clear-btn" onclick="clearForm()">
-                <span class="material-icons" style="vertical-align: middle; margin-right: 5px;">clear</span>
-                CLEAR
+                <span class="material-icons">delete</span> CLEAR
             </button>
         </div>
     </div>
@@ -807,8 +410,7 @@
         <pre id="output-script"></pre>
         <div class="output-buttons">
             <button id="copy-btn" onclick="copyToClipboard()">
-                <span class="material-icons" style="vertical-align: middle; margin-right: 5px;">content_copy</span>
-                COPY
+                <span class="material-icons">content_copy</span> COPY
             </button>
         </div>
     </div>
@@ -1022,24 +624,10 @@
 
     function copyToClipboard() {
         const outputText = document.getElementById('output-script').innerText;
-        if (!outputText.trim()) {
-            alert('No script to copy! Please generate a script first.');
-            return;
-        }
-        
         navigator.clipboard.writeText(outputText).then(() => {
-            const copyBtn = document.getElementById('copy-btn');
-            const originalText = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<span class="material-icons" style="vertical-align: middle; margin-right: 5px;">check</span> COPIED!';
-            copyBtn.style.background = 'linear-gradient(135deg, #ba68c8 0%, #9c27b0 100%)';
-            
-            setTimeout(() => {
-                copyBtn.innerHTML = originalText;
-                copyBtn.style.background = 'linear-gradient(135deg, #673ab7 0%, #5e35b1 100%)';
-            }, 2000);
+            alert('Script copied to clipboard!');
         }).catch(err => {
             console.error('Failed to copy text: ', err);
-            alert('Failed to copy script to clipboard.');
         });
     }
 
@@ -1058,25 +646,7 @@
         document.getElementById('vlan2').value = '';
         document.getElementById('vlan3').value = '';
         document.getElementById('vlan4').value = '';
-        
-        // Generate initial script
-        setTimeout(generateScript, 300);
-        
-        // Add input validation
-        const numberInputs = document.querySelectorAll('input[type="number"]');
-        numberInputs.forEach(input => {
-            input.addEventListener('input', () => {
-                if (input.value < 0) input.value = 0;
-            });
-        });
-        
-        // Auto-format MAC address
-        const macInput = document.getElementById('onu-mac');
-        macInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/[^a-fA-F0-9]/g, '').toUpperCase();
-            if (value.length > 12) value = value.substring(0, 12);
-            e.target.value = value;
-        });
+        generateScript();
     });
 </script>
 
