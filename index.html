@@ -10,7 +10,7 @@
 
         body {
             font-family: "Trebuchet MS", Trebuchet MS;
-            background: #00a3cc; /* Light greenish background #40B5AD */
+            background: #00a3cc; /* Changed to blueish background */
             color: #333;
             margin: 0;
             padding: 10px;
@@ -126,7 +126,7 @@
             max-width: 1000px; /* Increased max-width to accommodate two panels */
             justify-content: center;
             padding: 20px;
-            background-color: #e3f2fd;
+            background-color: #e3f2fd; /* Light blue background */
             border-radius: 10px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             transition: background 0.3s, box-shadow 0.3s;
@@ -134,7 +134,7 @@
         }
         .panel {
             flex: 1; /* Makes panels take up equal space */
-            background-color: #e6e6fa; /* Light purple for Input & Output boxes */
+            background-color: #e6f7ff; /* Light blue for Input & Output boxes */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -188,7 +188,7 @@
             border-radius: 6px;
             font-size: 0.85em;
             box-sizing: border-box;
-            background-color: #e6f7ff; /* Light blue for input fields */
+            background-color: #f0f8ff; /* Lighter blue for input fields */
             font-family: "Trebuchet MS", Trebuchet MS;
             transition: background 0.3s, border-color 0.3s, color 0.3s;
         }
@@ -230,6 +230,10 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
         }
+        #generate-btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+        }
         #clear-btn {
             background: linear-gradient(135deg, #f44336, #ef5350);
             color: white;
@@ -239,14 +243,18 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
         }
+        #clear-btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+        }
         .output-panel {
-            background-color: #e6e6fa; /* Light purple for Output box */
+            background-color: #e6f7ff; /* Light blue for Output box */
             position: relative;
             margin-top: 0; /* Adjusted for side-by-side layout */
             transition: background 0.3s, box-shadow 0.3s, color 0.3s;
         }
         #output-script {
-            background-color: #e6f7ff; /* Light blue for output script text area */
+            background-color: #f0f8ff; /* Lighter blue for output script text area */
             color: #333;
             padding: 15px;
             border-radius: 6px;
@@ -289,6 +297,19 @@
             background: linear-gradient(135deg, #1e88e5, #2196f3);
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 12px rgba(33, 150, 243, 0.3);
+        }
+        #copy-btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+        }
+        #copy-btn.copied {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            animation: buttonPulse 0.3s ease;
+        }
+        @keyframes buttonPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         /* Media query for smaller screens */
@@ -410,7 +431,7 @@
         <pre id="output-script"></pre>
         <div class="output-buttons">
             <button id="copy-btn" onclick="copyToClipboard()">
-                <span class="material-icons">content_copy</span> COPY
+                <span class="material-icons">content_copy</span> <span class="copy-text">COPY</span>
             </button>
         </div>
     </div>
@@ -603,6 +624,13 @@
         }
 
         document.getElementById('output-script').innerText = script;
+        
+        // Add button animation for generate
+        const generateBtn = document.getElementById('generate-btn');
+        generateBtn.classList.add('copied');
+        setTimeout(() => {
+            generateBtn.classList.remove('copied');
+        }, 300);
     }
 
     function clearForm() {
@@ -620,14 +648,36 @@
         document.getElementById('vlan3').value = '';
         document.getElementById('vlan4').value = '';
         document.getElementById('output-script').innerText = '';
+        
+        // Add button animation for clear
+        const clearBtn = document.getElementById('clear-btn');
+        clearBtn.classList.add('copied');
+        setTimeout(() => {
+            clearBtn.classList.remove('copied');
+        }, 300);
     }
 
     function copyToClipboard() {
         const outputText = document.getElementById('output-script').innerText;
+        const copyBtn = document.getElementById('copy-btn');
+        const copyText = copyBtn.querySelector('.copy-text');
+        
         navigator.clipboard.writeText(outputText).then(() => {
-            alert('Script copied to clipboard!');
+            // Change button text and style
+            copyBtn.classList.add('copied');
+            copyText.textContent = 'Copied!';
+            
+            // Revert back after 2 seconds
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyText.textContent = 'COPY';
+            }, 2000);
         }).catch(err => {
             console.error('Failed to copy text: ', err);
+            copyText.textContent = 'Error!';
+            setTimeout(() => {
+                copyText.textContent = 'COPY';
+            }, 2000);
         });
     }
 
