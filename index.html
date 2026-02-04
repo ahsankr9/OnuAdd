@@ -61,10 +61,10 @@
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
             text-align: center;
-            margin: 8px 0 4px 0;
+            margin: 12px 0 4px 0;
             background: #6026AB;
             -webkit-background-clip: text;
             background-clip: text;
@@ -82,9 +82,9 @@
         .prepared-by {
             text-align: center;
             font-weight: 600;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #470047;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.5px;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -96,8 +96,8 @@
 
         .theme-toggle {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 15px;
+            right: 15px;
             z-index: 10;
         }
         
@@ -106,9 +106,9 @@
             color: #9c27b0;
             border: 1px solid rgba(156, 39, 176, 0.3);
             cursor: pointer;
-            padding: 6px 8px;
+            padding: 8px 10px;
             border-radius: 50%;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             outline: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -135,16 +135,16 @@
         .main-container {
             display: flex;
             flex-direction: row;
-            gap: 15px;
+            gap: 20px;
             width: 100%;
-            max-width: 950px;
+            max-width: 1000px;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.92);
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 
-                0 8px 25px rgba(156, 39, 176, 0.3),
-                0 3px 10px rgba(142, 36, 170, 0.25);
+                0 10px 30px rgba(156, 39, 176, 0.3),
+                0 4px 12px rgba(142, 36, 170, 0.25);
             transition: all 0.3s ease;
             position: relative;
             backdrop-filter: blur(10px);
@@ -162,10 +162,10 @@
         .panel {
             flex: 1;
             background: rgba(255, 255, 255, 0.95);
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: 
-                0 4px 15px rgba(156, 39, 176, 0.2),
+                0 6px 20px rgba(156, 39, 176, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
             display: flex;
             flex-direction: column;
@@ -185,13 +185,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 18px;
             color: #9c27b0;
-            font-size: 0.95rem;
+            font-size: 1.0rem;
             font-weight: 700;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #ba68c8;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ba68c8;
             transition: color 0.3s, border-bottom 0.3s;
             font-family: 'Montserrat', sans-serif;
         }
@@ -201,23 +201,19 @@
             border-bottom: 2px solid #ba68c8;
         }
 
-        /* DESKTOP: 3 column grid */
         .input-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 10px;
         }
         
-        /* DESKTOP: 2 column grid */
         .input-grid.two-col {
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
         }
         
-        /* DESKTOP: 4 column grid for VLANs */
         .input-grid.vlan-grid {
             grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
+            gap: 6px;
         }
 
         .input-group {
@@ -231,8 +227,8 @@
 
         .input-group label {
             font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 4px;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
             color: #7b1fa2;
             transition: color 0.3s;
             font-family: 'Montserrat', sans-serif;
@@ -244,10 +240,10 @@
 
         .input-group input, .input-group select {
             width: 100%;
-            padding: 8px 10px;
+            padding: 10px 12px;
             border: 1px solid #e1bee7;
-            border-radius: 5px;
-            font-size: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
             box-sizing: border-box;
             background: rgba(243, 229, 245, 0.9);
             font-family: 'Roboto', sans-serif;
@@ -290,30 +286,25 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Section spacing */
-        .section-spacing {
-            margin-top: 12px;
-        }
-
         .button-group {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 20px;
         }
         
         .button-group button {
-            padding: 10px 16px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
-            font-size: 0.85rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-            min-width: 110px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            min-width: 120px;
             position: relative;
             overflow: hidden;
         }
@@ -382,19 +373,19 @@
         #output-script {
             background: rgba(243, 229, 245, 0.9);
             color: #4a148c;
-            padding: 15px;
-            border-radius: 5px;
+            padding: 18px;
+            border-radius: 6px;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
-            min-height: 180px;
-            font-size: 0.8rem;
-            line-height: 1.3;
+            min-height: 220px;
+            font-size: 0.85rem;
+            line-height: 1.4;
             border: 1px solid #e1bee7;
             font-family: 'Roboto Mono', monospace;
             font-weight: 500;
             transition: all 0.3s ease;
-            max-height: 300px;
+            max-height: 350px;
             overflow-y: auto;
             box-shadow: 
                 inset 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -409,24 +400,24 @@
         .output-buttons {
             display: flex;
             justify-content: flex-end;
-            gap: 8px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         #copy-btn {
             background: linear-gradient(135deg, #673ab7 0%, #5e35b1 100%);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            font-size: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-            min-width: 90px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            min-width: 100px;
             position: relative;
             overflow: hidden;
         }
@@ -463,20 +454,136 @@
             background: linear-gradient(135deg, #7e57c2 0%, #673ab7 100%);
         }
 
-        /* =========================================== */
-        /* MOBILE RESPONSIVE DESIGN - PASHAPASHI LAYOUT */
-        /* =========================================== */
-
+        /* Responsive Design - UPDATED FOR MOBILE VIEW */
         @media (max-width: 992px) {
             .main-container {
                 flex-direction: column;
                 max-width: 95%;
-                padding: 12px;
-                gap: 12px;
+                padding: 18px;
             }
             
             .panel {
+                padding: 18px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .prepared-by {
+                font-size: 1.0rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* OLT Type এবং ONU Ports পাশাপাশি */
+            .input-grid.two-col {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            /* Slot, PON, ONU ID পাশাপাশি */
+            .input-grid:not(.two-col):not(.vlan-grid) {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin-top: 12px !important;
+            }
+            
+            /* VLAN inputs */
+            .input-grid.vlan-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            
+            /* Line Profile এবং GEM ID পাশাপাশি */
+            .input-grid.two-col + .input-grid.two-col {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-top: 12px !important;
+            }
+            
+            /* MAC Address এবং Bandwidth Rate পাশাপাশি */
+            .input-grid.two-col + .input-grid.two-col + .input-grid.two-col {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-top: 12px !important;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .button-group button {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-top: 40px;
+            }
+            
+            .theme-toggle {
+                top: 12px;
+                right: 12px;
+            }
+            
+            .main-container {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* সব single column */
+            .input-grid.two-col {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .input-grid:not(.two-col):not(.vlan-grid) {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-top: 12px !important;
+            }
+            
+            .input-grid.vlan-grid {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .prepared-by {
+                font-size: 0.95rem;
+            }
+            
+            .panel-header {
+                font-size: 1.1rem;
+            }
+            
+            .button-group button {
+                padding: 10px 18px;
+            }
+            
+            /* ছোট স্ক্রিনে spacing কমিয়ে */
+            .panel {
+                padding: 15px;
+            }
+            
+            .main-container {
                 padding: 12px;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .input-grid.two-col,
+            .input-grid:not(.two-col):not(.vlan-grid),
+            .input-grid.vlan-grid {
+                gap: 8px;
             }
             
             h1 {
@@ -484,234 +591,21 @@
             }
             
             .prepared-by {
-                font-size: 0.7rem;
-            }
-            
-            /* Tablet e pashapashi layout maintain */
-            .input-grid.two-col {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            
-            .input-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-            }
-            
-            .input-grid.vlan-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 5px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            /* Mobile screen e PASHAPASHI layout */
-            .input-grid.two-col {
-                grid-template-columns: 1fr 1fr; /* Doita pashapashi */
-                gap: 8px;
-            }
-            
-            .input-grid {
-                grid-template-columns: 1fr 1fr 1fr; /* Tin ta pashapashi */
-                gap: 8px;
-            }
-            
-            .input-grid.vlan-grid {
-                grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 ta pashapashi */
-                gap: 5px;
-            }
-            
-            .main-container {
-                gap: 10px;
-                padding: 10px;
-            }
-            
-            .panel {
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 1.3rem;
-                margin-top: 35px;
-            }
-            
-            .theme-toggle {
-                top: 8px;
-                right: 8px;
-            }
-            
-            .panel-header {
-                font-size: 0.9rem;
-                margin-bottom: 12px;
-            }
-            
-            .input-group label {
-                font-size: 0.75rem;
-            }
-            
-            .input-group input, .input-group select {
-                font-size: 0.75rem;
-                padding: 7px 8px;
-            }
-            
-            .button-group button {
-                padding: 8px 14px;
-                font-size: 0.8rem;
-                min-width: 100px;
-            }
-            
-            #output-script {
-                padding: 12px;
-                font-size: 0.75rem;
-                min-height: 160px;
-                max-height: 280px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            /* Choto mobile screen e aro compact */
-            .input-grid.two-col {
-                grid-template-columns: 1fr 1fr; /* Doita pashapashi */
-                gap: 6px;
-            }
-            
-            .input-grid {
-                grid-template-columns: 1fr 1fr 1fr; /* Tin ta pashapashi */
-                gap: 6px;
-            }
-            
-            .input-grid.vlan-grid {
-                grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 ta pashapashi */
-                gap: 4px;
-            }
-            
-            h1 {
-                font-size: 1.2rem;
-                margin: 5px 0 2px 0;
-            }
-            
-            .prepared-by {
-                font-size: 0.65rem;
-                margin-bottom: 8px;
-            }
-            
-            .input-group input, .input-group select {
-                padding: 6px 7px;
-                font-size: 0.7rem;
-            }
-            
-            .input-group label {
-                font-size: 0.7rem;
-                margin-bottom: 3px;
-            }
-            
-            .panel-header {
                 font-size: 0.85rem;
-                margin-bottom: 10px;
-                padding-bottom: 6px;
-            }
-            
-            .button-group button {
-                padding: 7px 12px;
-                font-size: 0.75rem;
-                min-width: 90px;
-            }
-            
-            .button-group {
-                gap: 8px;
-                margin-top: 12px;
-            }
-            
-            #output-script {
-                padding: 10px;
-                font-size: 0.7rem;
-                min-height: 140px;
-                max-height: 250px;
-            }
-            
-            #copy-btn {
-                padding: 6px 12px;
-                font-size: 0.7rem;
-                min-width: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            /* Extra small phones - aro compact */
-            .input-grid.two-col {
-                grid-template-columns: 1fr 1fr; /* Still 2 columns pashapashi */
-                gap: 5px;
-            }
-            
-            .input-grid {
-                grid-template-columns: 1fr 1fr 1fr; /* 3 columns pashapashi */
-                gap: 5px;
-            }
-            
-            .input-grid.vlan-grid {
-                grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 columns pashapashi */
-                gap: 3px;
-            }
-            
-            .input-group input, .input-group select {
-                padding: 5px 6px;
-                font-size: 0.65rem;
-            }
-            
-            .input-group label {
-                font-size: 0.65rem;
             }
             
             .panel-header {
-                font-size: 0.8rem;
-                margin-bottom: 8px;
-            }
-            
-            .material-icons {
-                font-size: 0.9rem;
-            }
-            
-            h1 {
-                font-size: 1.1rem;
-            }
-            
-            .button-group button {
-                padding: 6px 10px;
-                font-size: 0.7rem;
-                min-width: 85px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            /* Very small phones - adjust as needed */
-            .input-grid.two-col {
-                grid-template-columns: 1fr 1fr;
-                gap: 4px;
-            }
-            
-            .input-grid {
-                grid-template-columns: 1fr 1fr; /* 2 columns pashapashi */
-                gap: 4px;
-            }
-            
-            .input-grid.vlan-grid {
-                grid-template-columns: 1fr 1fr; /* 2 columns for VLAN (scroll hobe na) */
-                gap: 3px;
-            }
-            
-            .input-group input, .input-group select {
-                padding: 4px 5px;
-                font-size: 0.6rem;
+                font-size: 1rem;
             }
             
             .input-group label {
-                font-size: 0.6rem;
+                font-size: 0.8rem;
             }
             
-            .button-group button {
-                padding: 5px 8px;
-                font-size: 0.65rem;
-                min-width: 80px;
+            .input-group input,
+            .input-group select {
+                padding: 8px 10px;
+                font-size: 0.8rem;
             }
         }
 
@@ -768,7 +662,7 @@
         
         /* Smaller icon sizes */
         .material-icons {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         
         /* Number input spinner styling */
@@ -821,14 +715,13 @@
             <span class="material-icons">settings_input_component</span> Configuration Inputs
         </div>
 
-        <!-- OLT Type & ONU Ports - Pashapashi 2 column -->
         <div class="input-grid two-col">
             <div class="input-group">
                 <label for="olt-type">OLT Type</label>
                 <select id="olt-type">
                     <option value="vsol-gpon">VSOL GPON</option>
-                    <option value="cdata-gpon-16">CData GPON 16-PON</option>
-                    <option value="cdata-gpon-8">CData GPON 8-PON</option>
+                    <option value="cdata-gpon-16" selected>C-Data GPON 16-PON</option>
+                    <option value="cdata-gpon-8">C-Data GPON 8-PON</option>
                     <option value="utstarcom">UTStarcom</option>
                     <option value="fh-net">FH-NET</option>
                     <option value="phyhome">Phyhome</option>
@@ -837,14 +730,13 @@
             <div class="input-group">
                 <label for="onu-ports">ONU Ports</label>
                 <select id="onu-ports">
-                    <option value="1">1-Port</option>
+                    <option value="1" selected>1-Port</option>
                     <option value="4">4-Ports</option>
                 </select>
             </div>
         </div>
 
-        <!-- Slot, PON, ONU ID - Pashapashi 3 column -->
-        <div class="input-grid section-spacing">
+        <div class="input-grid" style="margin-top: 12px;">
             <div class="input-group">
                 <label for="slot">Slot</label>
                 <input type="number" id="slot" value="0" min="0" max="16">
@@ -859,8 +751,7 @@
             </div>
         </div>
 
-        <!-- ONU MAC Address & Line Profile ID - Pashapashi 2 column -->
-        <div class="input-grid two-col section-spacing">
+        <div class="input-grid two-col" style="margin-top: 12px;">
             <div class="input-group">
                 <label for="onu-mac">ONU MAC Address</label>
                 <input type="text" id="onu-mac" placeholder="ONU MAC (e.g., AABBCCDDEEFF)">
@@ -871,8 +762,7 @@
             </div>
         </div>
 
-        <!-- GEM ID & Bandwidth Rate - Pashapashi 2 column -->
-        <div class="input-grid two-col section-spacing">
+        <div class="input-grid two-col" style="margin-top: 12px;">
             <div class="input-group">
                 <label for="gem-id">GEM ID (C-Data)</label>
                 <input type="number" id="gem-id" value="1" min="1" max="4096">
@@ -888,8 +778,7 @@
             </div>
         </div>
 
-        <!-- VLAN IDs - Pashapashi 4 column -->
-        <div class="input-group full-width section-spacing">
+        <div class="input-group full-width" style="margin-top: 12px;">
             <label>VLAN IDs</label>
             <div class="input-grid vlan-grid">
                 <input type="text" id="vlan1" placeholder="VLAN 1" value="12">
@@ -899,7 +788,6 @@
             </div>
         </div>
 
-        <!-- Buttons -->
         <div class="button-group">
             <button id="generate-btn" onclick="generateScript()">
                 <span class="material-icons" style="vertical-align: middle; margin-right: 5px;">play_arrow</span>
